@@ -1,7 +1,7 @@
 {
   "name": "siphash24",
   "version": "1.0.0",
-  "description": "WIP - nothing to see here",
+  "description": "SipHash (2-4) implemented in pure Javascript and WebAssembly",
   "main": "index.js",
   "dependencies": {
     "base64-to-uint8array": "^1.0.0",

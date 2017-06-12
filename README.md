@@ -1,6 +1,6 @@
 # siphash24
 
-[siphash24](https://en.wikipedia.org/wiki/SipHash) implemented in pure Javascript and WASM (if your runtime supports it)
+[SipHash](https://en.wikipedia.org/wiki/SipHash) (2-4) implemented in pure Javascript and WebAssembly.
 
 ```
 npm install siphash24
