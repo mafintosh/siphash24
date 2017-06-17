@@ -1,6 +1,6 @@
 {
   "name": "siphash24",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "SipHash (2-4) implemented in pure Javascript and WebAssembly",
   "main": "index.js",
   "dependencies": {
@@ -12,7 +12,9 @@
     "tape": "^4.6.3"
   },
   "browserify": {
-    "transform": ["brfs"]
+    "transform": [
+      "brfs"
+    ]
   },
   "scripts": {
     "test": "node test.js"
