@@ -26,6 +26,7 @@ function siphash24 (data, key, out, noAssert) {
   }
 
   if (mod && mod.exports) {
+    if (data.length + 24 > mod.memory.length) mod.realloc(data.length + 24)
     mod.memory.set(key, 8)
     mod.memory.set(data, 24)
     mod.exports.siphash(24, data.length)

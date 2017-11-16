@@ -1,5 +1,5 @@
 (module
-  (memory (export "memory") 10 10)
+  (memory (export "memory") 10 10000)
 
   (func (export "siphash") (param $ptr i32) (param $ptr_len i32)
     (local $v0 i64)
