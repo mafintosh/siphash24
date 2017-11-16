@@ -1,6 +1,6 @@
 var wasm = require('./siphash24')
 var fallback = require('./fallback')
-var assert = require('assert')
+var assert = require('nanoassert')
 
 module.exports = siphash24
 
