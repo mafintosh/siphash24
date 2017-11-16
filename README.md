@@ -39,10 +39,6 @@ Boolean informing you if your runtime supports WASM.
 
 Boolean informing you if the WASM implementation has been loaded.
 
-#### `siphash24.ready(callback)`
-
-Wait for WASM to be loaded. If you call `siphash24` before the WASM has been loaded it will simply use the Javascript fallback.
-
 ## License
 
 MIT
