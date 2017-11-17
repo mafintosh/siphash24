@@ -15,7 +15,7 @@ When using the WASM implementation this module is almost as fast as the C versio
 
 ``` js
 var siphash24 = require('siphash24')
-var hash = siphash24(new Buffer('hello world'), new Buffer('012345678012345678'))
+var hash = siphash24(Buffer.from('hello world'), Buffer.from('012345678012345678'))
 
 console.log(hash, 'hash of "hello world" as a uint8array')
 ```
