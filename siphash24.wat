@@ -132,25 +132,25 @@
                     (br_table $0 $1 $2 $3 $4 $5 $6 $7 (get_local $left))
                   )
                   ;; b |= ((uint64_t) in[6]) << 48;
-                  (set_local $b (i64.or (get_local $b) (i64.shl (i64.load8_u (i32.add (get_local $ptr) (i32.const 6))) (i64.const 48))))
+                  (set_local $b (i64.or (get_local $b) (i64.shl (i64.load8_u offset=6 (get_local $ptr)) (i64.const 48))))
                 )
                 ;; b |= ((uint64_t) in[5]) << 40;
-                (set_local $b (i64.or (get_local $b) (i64.shl (i64.load8_u (i32.add (get_local $ptr) (i32.const 5))) (i64.const 40))))
+                (set_local $b (i64.or (get_local $b) (i64.shl (i64.load8_u offset=5 (get_local $ptr)) (i64.const 40))))
               )
               ;; b |= ((uint64_t) in[4]) << 32;
-              (set_local $b (i64.or (get_local $b) (i64.shl (i64.load8_u (i32.add (get_local $ptr) (i32.const 4))) (i64.const 32))))
+              (set_local $b (i64.or (get_local $b) (i64.shl (i64.load8_u offset=4 (get_local $ptr)) (i64.const 32))))
             )
             ;; b |= ((uint64_t) in[3]) << 24;
-            (set_local $b (i64.or (get_local $b) (i64.shl (i64.load8_u (i32.add (get_local $ptr) (i32.const 3))) (i64.const 24))))
+            (set_local $b (i64.or (get_local $b) (i64.shl (i64.load8_u offset=3 (get_local $ptr)) (i64.const 24))))
           )
           ;; b |= ((uint64_t) in[2]) << 16;
-          (set_local $b (i64.or (get_local $b) (i64.shl (i64.load8_u (i32.add (get_local $ptr) (i32.const 2))) (i64.const 16))))
+          (set_local $b (i64.or (get_local $b) (i64.shl (i64.load8_u offset=2 (get_local $ptr)) (i64.const 16))))
         )
         ;; b |= ((uint64_t) in[1]) << 8;
-        (set_local $b (i64.or (get_local $b) (i64.shl (i64.load8_u (i32.add (get_local $ptr) (i32.const 1))) (i64.const 8))))
+        (set_local $b (i64.or (get_local $b) (i64.shl (i64.load8_u offset=1 (get_local $ptr)) (i64.const 8))))
       )
       ;; b |= ((uint64_t) in[0]);
-      (set_local $b (i64.or (get_local $b) (i64.load8_u (get_local $ptr))))
+      (set_local $b (i64.or (get_local $b) (i64.load8_u offset=0 (get_local $ptr))))
     )
 
     ;; v3 ^= b;
