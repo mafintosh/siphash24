@@ -8,11 +8,11 @@
   },
   "devDependencies": {
     "tape": "^5.2.2",
-    "wat2js": "^2.1.1"
+    "wasm-tools": "^0.2.0"
   },
   "scripts": {
     "test": "node test.js",
-    "compile": "wat2js siphash24.wat -o siphash24.js"
+    "compile": "wasm-to-js -sf cjs siphash24.wat > siphash24.js"
   },
   "repository": {
     "type": "git",

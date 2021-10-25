@@ -1,21 +1,16 @@
-var wasm = require('./siphash24')
-var fallback = require('./fallback')
 var assert = require('nanoassert')
+var wasm = typeof WebAssembly !== 'undefined' && require('./siphash24')()
+var fallback = require('./fallback')
 
 module.exports = siphash24
 
 var BYTES = siphash24.BYTES = 8
 var KEYBYTES = siphash24.KEYBYTES = 16
-var mod = wasm()
 
-siphash24.WASM_SUPPORTED = typeof WebAssembly !== 'undefined'
-siphash24.WASM_LOADED = false
+siphash24.WASM_SUPPORTED = !!wasm
+siphash24.WASM_LOADED = !!wasm
 
-if (mod) {
-  mod.onload(function (err) {
-    siphash24.WASM_LOADED = !err
-  })
-}
+var memory = new Uint8Array(wasm.memory.buffer)
 
 function siphash24 (data, key, out, noAssert) {
   if (!out) out = new Uint8Array(8)
@@ -25,15 +20,20 @@ function siphash24 (data, key, out, noAssert) {
     assert(key.length >= KEYBYTES, 'key must be at least ' + KEYBYTES)
   }
 
-  if (mod && mod.exports) {
-    if (data.length + 24 > mod.memory.length) mod.realloc(data.length + 24)
-    mod.memory.set(key, 8)
-    mod.memory.set(data, 24)
-    mod.exports.siphash(24, data.length)
-    out.set(mod.memory.subarray(0, 8))
+  if (wasm) {
+    if (data.length + 24 > memory.length) realloc(data.length + 24)
+    memory.set(key, 8)
+    memory.set(data, 24)
+    wasm.siphash(24, data.length)
+    out.set(memory.subarray(0, 8))
   } else {
     fallback(out, data, key)
   }
 
   return out
+}
+
+function realloc (size) {
+  wasm.memory.grow(Math.max(0, Math.ceil(Math.abs(size - memory.length) / 65536)))
+  memory = new Uint8Array(wasm.memory.buffer)
 }
