@@ -10,7 +10,7 @@ var KEYBYTES = siphash24.KEYBYTES = 16
 siphash24.WASM_SUPPORTED = !!wasm
 siphash24.WASM_LOADED = !!wasm
 
-var memory = new Uint8Array(wasm.memory.buffer)
+var memory = new Uint8Array(wasm ? wasm.memory.buffer : 0)
 
 function siphash24 (data, key, out, noAssert) {
   if (!out) out = new Uint8Array(8)
